@@ -11,5 +11,6 @@ namespace BookAPI.Models
         public string Isbn { get; set; }
         public string Title { get; set; }
         public DateTime DatePublished { get; set; }
+        public ICollection<Review> Reviews { get; set; }
     }
 }
