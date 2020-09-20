@@ -7,7 +7,6 @@ C:\1. Documente\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\BookAPI.runtime
 C:\1. Documente\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\BookAPI.runtimeconfig.dev.json
 C:\1. Documente\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\BookAPI.dll
 C:\1. Documente\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\BookAPI.pdb
-C:\1. Documente\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csprojAssemblyReference.cache
 C:\1. Documente\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.AssemblyInfoInputs.cache
 C:\1. Documente\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.AssemblyInfo.cs
 C:\1. Documente\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.RazorTargetAssemblyInfo.cache
