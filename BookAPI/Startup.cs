@@ -45,7 +45,8 @@ namespace BookAPI
             //    });
             //});
 
-            context.SeedDataContext();
+            //context.SeedDataContext();
+
             //app.UseMvc();
         }
     }
