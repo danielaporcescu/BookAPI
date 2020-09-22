@@ -75,7 +75,7 @@ namespace BookAPI.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
-        public IActionResult GetCategoryOfABook(int bookId)
+        public IActionResult GetAllCategoriesOfABook(int bookId)
         {
             //TO-DO - VALIDATE THAT BOOK EXISTS
 
@@ -95,6 +95,37 @@ namespace BookAPI.Controllers
                 });
             }
             return Ok(categoriesDto);
+        }
+
+        //api/categories/categoryId/books
+        [HttpGet]
+        [Route("{categoryId}/books")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
+        public IActionResult GetBooksForCategory(int categoryId)
+        {
+            if (!_categoryRepository.CategoryExists(categoryId))
+                return NotFound();
+
+            var books = _categoryRepository.GetBooksForCategory(categoryId);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var booksDto = new List<BookDto>();
+
+            foreach (var book in books)
+            {
+                booksDto.Add(new BookDto
+                {
+                    Id = book.Id,
+                    Isbn = book.Isbn,
+                    Title = book.Title,
+                    DatePublished = book.DatePublished
+                });
+            }
+            return Ok(booksDto);
         }
     }
 }
