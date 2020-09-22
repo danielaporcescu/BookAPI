@@ -73,7 +73,7 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(CountryDto))]
         public IActionResult GetCountyOfAnAuthor(int authorId)
         {
-            //TO-DO - VALIDATE THAT AUTHOR EXISTS
+            //TO-DO - Validate if the author exists
             var country = _countryRepository.GetCountryOfAnAuthor(authorId);
 
             if (!ModelState.IsValid)
@@ -86,6 +86,36 @@ namespace BookAPI.Controllers
             };
 
             return Ok(countryDto);
+        }
+
+        //api/countries/countryId/authors
+        [HttpGet("{countryId}/authors")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
+        public IActionResult GetAuthorsFromACountry(int countryId)
+        {
+            if (!_countryRepository.CountryExists(countryId))
+                return NotFound();
+
+            var authors = _countryRepository.GetAuthorsFromACountry(countryId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var authorsDto = new List<AuthorDto>();
+
+            foreach (var author in authors)
+            {
+                authorsDto.Add(new AuthorDto()
+                {
+                    Id = author.Id,
+                    FirstName = author.FirstName,
+                    LastName = author.LastName
+                });
+            }
+
+            return Ok(authorsDto);
         }
     }
 }
