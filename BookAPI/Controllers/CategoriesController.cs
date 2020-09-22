@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace BookAPI.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class CategoriesController : Controller
     {
         private ICategoryRepository _categoryRepository;
@@ -25,16 +26,16 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
         public IActionResult GetCategories()
         {
+            var categories = _categoryRepository.GetCategories();
+
             if (!ModelState.IsValid)
                 return BadRequest();
-
-            var categories = _categoryRepository.GetCategories();
 
             var categoriesDto = new List<CategoryDto>();
 
             foreach (var category in categories)
             {
-                categoriesDto.Add(new CategoryDto()
+                categoriesDto.Add(new CategoryDto
                 {
                     Id = category.Id,
                     Name = category.Name
@@ -48,16 +49,16 @@ namespace BookAPI.Controllers
         [Route("{categoryId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
+        [ProducesResponseType(200, Type = typeof(CategoryDto))]
         public IActionResult GetCategory(int categoryId)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            if (!_categoryRepository.CategoryExists(categoryId))
+                return NotFound();
 
             var category = _categoryRepository.GetCategory(categoryId);
 
-            if (!_categoryRepository.CategoryExists(categoryId))
-                return NotFound();
+            if (!ModelState.IsValid)
+                return BadRequest();
 
             var categoryDto = new CategoryDto()
             {
@@ -77,18 +78,23 @@ namespace BookAPI.Controllers
         public IActionResult GetCategoryOfABook(int bookId)
         {
             //TO-DO - VALIDATE THAT BOOK EXISTS
+
+            var categories = _categoryRepository.GetAllCategoriesOfABook(bookId);
+
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var book = _categoryRepository.GetCategoryOfABook(bookId);
+            var categoriesDto = new List<CategoryDto>();
 
-            var categoryDto = new CategoryDto()
+            foreach (var category in categories)
             {
-                Id = book.Id,
-                Name = book.Name
-            };
-
-            return Ok(categoryDto);
+                categoriesDto.Add(new CategoryDto
+                {
+                    Id = category.Id,
+                    Name = category.Name
+                });
+            }
+            return Ok(categoriesDto);
         }
     }
 }

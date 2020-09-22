@@ -20,7 +20,7 @@ namespace BookAPI.Services
             return _categoryContext.Categories.Any(c => c.Id == categoryId);
         }
 
-        public ICollection<Book> GetBooksForCategoty(int categotyId)
+        public ICollection<Book> GetBooksForCategory(int categotyId)
         {
             return _categoryContext.BookCategories
                  .Where(c => c.CategoryId == categotyId)
@@ -35,18 +35,18 @@ namespace BookAPI.Services
                 .ToList();
         }
 
+        public ICollection<Category> GetAllCategoriesOfABook(int bookId)
+        {
+            return _categoryContext.BookCategories
+               .Where(b => b.Book.Id == bookId)
+               .Select(c => c.Category)
+               .ToList();
+        }
+
         public Category GetCategory(int categoryId)
         {
             return _categoryContext.Categories
                 .Where(c => c.Id == categoryId)
-                .FirstOrDefault();
-        }
-
-        public Category GetCategoryOfABook(int bookId)
-        {
-            return _categoryContext.BookCategories
-                .Where(b => b.Book.Id == bookId)
-                .Select(c => c.Category)
                 .FirstOrDefault();
         }
     }
