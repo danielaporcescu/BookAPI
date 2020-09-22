@@ -58,4 +58,3 @@ C:\1. Documente\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\runtimes\win\li
 C:\1. Documente\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\1. Documente\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csproj.CoreCompileInputs.cache
 C:\1. Documente\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\1. Documente\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csprojAssemblyReference.cache
