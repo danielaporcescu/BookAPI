@@ -25,6 +25,8 @@ namespace BookAPI
 
             var connectionString = Configuration["connectionStrings:bookDbConnectionString"];
             services.AddDbContext<BookDbContext>(c => c.UseSqlServer(connectionString));
+
+            services.AddScoped<ICountryRepository, CountryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +38,11 @@ namespace BookAPI
             }
 
             app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            });
 
             //app.UseEndpoints(endpoints =>
             //{
