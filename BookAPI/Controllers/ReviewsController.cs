@@ -7,12 +7,12 @@ namespace BookAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReviewController : Controller
+    public class ReviewsController : Controller
     {
         private readonly IReviewRepository _reviewRepository;
         private readonly IBookRepository _bookRepository;
 
-        public ReviewController(IReviewRepository reviewRepository, IBookRepository bookRepository)
+        public ReviewsController(IReviewRepository reviewRepository, IBookRepository bookRepository)
         {
             _reviewRepository = reviewRepository;
             _bookRepository = bookRepository;

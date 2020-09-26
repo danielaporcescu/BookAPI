@@ -59,7 +59,7 @@ namespace BookAPI.Services
 
         public IActionResult GetAuthorsOfABook(int bookId, ModelStateDictionary state)
         {
-            if (_bookRepository.BookExistsById(bookId))
+            if (!_bookRepository.BookExistsById(bookId))
                 return new NotFoundResult();
 
             var authors = _authorRepository.GetAuthorsOfABook(bookId);

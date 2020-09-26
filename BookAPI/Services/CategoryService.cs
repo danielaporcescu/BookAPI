@@ -18,7 +18,7 @@ namespace BookAPI.Services
 
         public IActionResult GetAllCategoriesOfABook(int bookId, ModelStateDictionary state)
         {
-            if (_bookRepository.BookExistsById(bookId))
+            if (!_bookRepository.BookExistsById(bookId))
                 return new NotFoundResult();
 
             var categories = _categoryRepository.GetAllCategoriesOfABook(bookId);
