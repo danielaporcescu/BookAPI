@@ -10,6 +10,7 @@ namespace BookAPI.Services
     {
         private BookDbContext _reviewerContext;
 
+        //dependency injection
         public ReviewerRepository(BookDbContext reviewerContext)
         {
             _reviewerContext = reviewerContext;
@@ -23,7 +24,7 @@ namespace BookAPI.Services
         public ICollection<Reviewer> GetReviewers()
         {
             return _reviewerContext.Reviewers
-                .OrderBy(r => r.FirstName)
+                .OrderBy(r => r.LastName)
                 .ToList();
         }
 
@@ -36,9 +37,13 @@ namespace BookAPI.Services
 
         public Reviewer GetReviewerOfAReview(int reviewId)
         {
-            return _reviewerContext.Reviews
+            var reviewerId = _reviewerContext.Reviews
                 .Where(r => r.Id == reviewId)
-                .Select(er => er.Reviewer)
+                .Select(er => er.Reviewer.Id)
+                .FirstOrDefault();
+
+            return _reviewerContext.Reviewers
+                .Where(r => r.Id == reviewerId)
                 .FirstOrDefault();
         }
 
