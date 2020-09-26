@@ -1,10 +1,13 @@
 using BookAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BookAPI
 {
@@ -26,11 +29,15 @@ namespace BookAPI
             var connectionString = Configuration["connectionStrings:bookDbConnectionString"];
             services.AddDbContext<BookDbContext>(c => c.UseSqlServer(connectionString));
 
-            services.AddScoped<ICountryRepository, CountryRepository>();
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IReviewerRepository, ReviewerRepository>();
-            services.AddScoped<IReviewRepository, ReviewRepository>();
-            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IReviewerRepository, ReviewerRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
+
+            services.AddTransient<ICategoryService, CategoryService>();
+            //services.AddTransient<IEnumerable<KeyValuePair<string, ModelStateEntry>>, ModelStateDictionary>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

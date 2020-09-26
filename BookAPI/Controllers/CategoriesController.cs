@@ -2,10 +2,7 @@
 using BookAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookAPI.Controllers
 {
@@ -13,13 +10,11 @@ namespace BookAPI.Controllers
     [ApiController]
     public class CategoriesController : Controller
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IBookRepository _bookRepository;
+        private readonly ICategoryService _categoryService;
 
-        public CategoriesController(ICategoryRepository categoryRepository, IBookRepository bookRepository)
+        public CategoriesController(ICategoryService categoryService)
         {
-            _categoryRepository = categoryRepository;
-            _bookRepository = bookRepository;
+            _categoryService = categoryService;
         }
 
         //api/categories
@@ -28,22 +23,7 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
         public IActionResult GetCategories()
         {
-            var categories = _categoryRepository.GetCategories();
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var categoriesDto = new List<CategoryDto>();
-
-            foreach (var category in categories)
-            {
-                categoriesDto.Add(new CategoryDto
-                {
-                    Id = category.Id,
-                    Name = category.Name
-                });
-            }
-            return Ok(categoriesDto);
+            return _categoryService.GetCategories(ModelState);
         }
 
         //api/categories/categoryId
@@ -54,21 +34,7 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(CategoryDto))]
         public IActionResult GetCategory(int categoryId)
         {
-            if (!_categoryRepository.CategoryExists(categoryId))
-                return NotFound();
-
-            var category = _categoryRepository.GetCategory(categoryId);
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var categoryDto = new CategoryDto()
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-
-            return Ok(categoryDto);
+            return _categoryService.GetCategory(categoryId, ModelState);
         }
 
         //api/categories/books/bookId
@@ -79,25 +45,7 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
         public IActionResult GetAllCategoriesOfABook(int bookId)
         {
-            if (_bookRepository.BookExistsById(bookId))
-                return NotFound();
-
-            var categories = _categoryRepository.GetAllCategoriesOfABook(bookId);
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var categoriesDto = new List<CategoryDto>();
-
-            foreach (var category in categories)
-            {
-                categoriesDto.Add(new CategoryDto
-                {
-                    Id = category.Id,
-                    Name = category.Name
-                });
-            }
-            return Ok(categoriesDto);
+            return _categoryService.GetAllCategoriesOfABook(bookId, ModelState);
         }
 
         //api/categories/categoryId/books
@@ -108,27 +56,7 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<BookDto>))]
         public IActionResult GetBooksForCategory(int categoryId)
         {
-            if (!_categoryRepository.CategoryExists(categoryId))
-                return NotFound();
-
-            var books = _categoryRepository.GetBooksForCategory(categoryId);
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var booksDto = new List<BookDto>();
-
-            foreach (var book in books)
-            {
-                booksDto.Add(new BookDto
-                {
-                    Id = book.Id,
-                    Isbn = book.Isbn,
-                    Title = book.Title,
-                    DatePublished = book.DatePublished
-                });
-            }
-            return Ok(booksDto);
+            return _categoryService.GetBooksForCategory(categoryId, ModelState);
         }
     }
 }

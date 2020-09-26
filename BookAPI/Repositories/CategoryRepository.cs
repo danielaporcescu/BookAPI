@@ -8,7 +8,7 @@ namespace BookAPI.Services
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private BookDbContext _categoryContext;
+        private readonly BookDbContext _categoryContext;
 
         public CategoryRepository(BookDbContext categoryContext)
         {
