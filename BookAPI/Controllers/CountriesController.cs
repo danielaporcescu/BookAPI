@@ -14,9 +14,12 @@ namespace BookAPI.Controllers
     {
         private ICountryRepository _countryRepository;
 
-        public CountriesController(ICountryRepository countryRepository)
+        private IAuthorRepository _authorRepository;
+
+        public CountriesController(ICountryRepository countryRepository, IAuthorRepository authorRepository)
         {
             _countryRepository = countryRepository;
+            _authorRepository = authorRepository;
         }
 
         //api/countries
@@ -73,7 +76,9 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(CountryDto))]
         public IActionResult GetCountyOfAnAuthor(int authorId)
         {
-            //TO-DO - Validate if the author exists
+            if (_authorRepository.AuthorExists(authorId))
+                return NotFound();
+
             var country = _countryRepository.GetCountryOfAnAuthor(authorId);
 
             if (!ModelState.IsValid)
