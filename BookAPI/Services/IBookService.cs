@@ -7,8 +7,8 @@ namespace BookAPI.Services
     {
         IActionResult GetBooks(ModelStateDictionary state);
 
-        IActionResult GetBookById(ModelStateDictionary state);
+        IActionResult GetBookById(int bookId, ModelStateDictionary state);
 
-        IActionResult GetBookByISBN(ModelStateDictionary state);
+        IActionResult GetBookByISBN(int bookIsbn, ModelStateDictionary state);
     }
 }

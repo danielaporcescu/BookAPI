@@ -5,12 +5,19 @@ namespace BookAPI.Services
 {
     public class BookService : IBookService
     {
-        public IActionResult GetBookById(ModelStateDictionary state)
+        private readonly IBookRepository _bookRepository;
+
+        public BookService(IBookRepository bookRepository)
+        {
+            _bookRepository = bookRepository;
+        }
+
+        public IActionResult GetBookById(int bookId, ModelStateDictionary state)
         {
             throw new System.NotImplementedException();
         }
 
-        public IActionResult GetBookByISBN(ModelStateDictionary state)
+        public IActionResult GetBookByISBN(int bookIsbn, ModelStateDictionary state)
         {
             throw new System.NotImplementedException();
         }
