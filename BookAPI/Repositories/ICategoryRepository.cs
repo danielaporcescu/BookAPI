@@ -14,5 +14,7 @@ namespace BookAPI.Services
         ICollection<Book> GetBooksForCategory(int categoryId);
 
         bool CategoryExists(int categoryId);
+
+        bool IsDuplicateCategoryName(int categoryId, string categoryName);
     }
 }
