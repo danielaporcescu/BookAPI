@@ -37,7 +37,7 @@ namespace BookAPI
             services.AddTransient<IBookRepository, BookRepository>();
 
             services.AddTransient<ICategoryService, CategoryService>();
-            //services.AddTransient<IEnumerable<KeyValuePair<string, ModelStateEntry>>, ModelStateDictionary>();
+            services.AddTransient<IAuthorService, AuthorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -17,7 +17,8 @@ namespace BookAPI.Services
 
         public bool CategoryExists(int categoryId)
         {
-            return _categoryContext.Categories.Any(c => c.Id == categoryId);
+            return _categoryContext.Categories
+                .Any(c => c.Id == categoryId);
         }
 
         public ICollection<Book> GetBooksForCategory(int categotyId)

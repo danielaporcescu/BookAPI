@@ -39,7 +39,7 @@ namespace BookAPI.Services
             return new OkObjectResult(categoriesDto);
         }
 
-        public IActionResult GetBooksForCategory(int categoryId, ModelStateDictionary state)
+        public IActionResult GetCategory(int categoryId, ModelStateDictionary state)
         {
             var category = _categoryRepository.GetCategory(categoryId);
 
@@ -78,7 +78,7 @@ namespace BookAPI.Services
             return new OkObjectResult(categoriesDto);
         }
 
-        public IActionResult GetCategory(int categoryId, ModelStateDictionary state)
+        public IActionResult GetBooksForCategory(int categoryId, ModelStateDictionary state)
         {
             if (!_categoryRepository.CategoryExists(categoryId))
                 return new NotFoundResult();
