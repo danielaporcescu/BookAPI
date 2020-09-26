@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookAPI.Models
 {
@@ -23,6 +21,7 @@ namespace BookAPI.Models
 
         // ? = means it's optional
         public DateTime? DatePublished { get; set; }
+
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
         public virtual ICollection<BookCategory> BookCategories { get; set; }
