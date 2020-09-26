@@ -12,8 +12,8 @@ namespace BookAPI.Controllers
     [ApiController]
     public class ReviewersController : Controller
     {
-        private IReviewerRepository _reviewerRepository;
-        private IReviewRepository _reviewRepository;
+        private readonly IReviewerRepository _reviewerRepository;
+        private readonly IReviewRepository _reviewRepository;
 
         public ReviewersController(IReviewerRepository reviewerRepository, IReviewRepository reviewRepository)
         {
@@ -71,7 +71,7 @@ namespace BookAPI.Controllers
         }
 
         //api/reviewers/reviewId/reviews
-        [HttpGet("{reviewId}/reviews")]
+        [HttpGet("{reviewId}/reviewer")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(ReviewerDto))]
@@ -110,11 +110,11 @@ namespace BookAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var reviewDto = new List<ReviewDto>();
+            var reviewsDto = new List<ReviewDto>();
 
             foreach (var review in reviews)
             {
-                reviewDto.Add(new ReviewDto()
+                reviewsDto.Add(new ReviewDto()
                 {
                     Id = review.Id,
                     Headline = review.Headline,
@@ -123,7 +123,7 @@ namespace BookAPI.Controllers
                 });
             }
 
-            return Ok(reviewDto);
+            return Ok(reviewsDto);
         }
     }
 }

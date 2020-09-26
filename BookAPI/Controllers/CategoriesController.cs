@@ -13,8 +13,8 @@ namespace BookAPI.Controllers
     [ApiController]
     public class CategoriesController : Controller
     {
-        private ICategoryRepository _categoryRepository;
-        private IBookRepository _bookRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IBookRepository _bookRepository;
 
         public CategoriesController(ICategoryRepository categoryRepository, IBookRepository bookRepository)
         {

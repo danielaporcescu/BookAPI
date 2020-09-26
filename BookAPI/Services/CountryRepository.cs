@@ -7,7 +7,7 @@ namespace BookAPI.Services
 {
     public class CountryRepository : ICountryRepository
     {
-        private BookDbContext _countryContext;
+        private readonly BookDbContext _countryContext;
 
         public CountryRepository(BookDbContext countryContext)
         {

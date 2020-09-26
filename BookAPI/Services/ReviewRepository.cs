@@ -8,7 +8,7 @@ namespace BookAPI.Services
 {
     public class ReviewRepository : IReviewRepository
     {
-        private BookDbContext _reviewContext;
+        private readonly BookDbContext _reviewContext;
 
         public ReviewRepository(BookDbContext reviewContext)
         {

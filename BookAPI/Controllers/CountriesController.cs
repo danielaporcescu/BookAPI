@@ -12,9 +12,9 @@ namespace BookAPI.Controllers
     [ApiController]
     public class CountriesController : Controller
     {
-        private ICountryRepository _countryRepository;
+        private readonly ICountryRepository _countryRepository;
 
-        private IAuthorRepository _authorRepository;
+        private readonly IAuthorRepository _authorRepository;
 
         public CountriesController(ICountryRepository countryRepository, IAuthorRepository authorRepository)
         {

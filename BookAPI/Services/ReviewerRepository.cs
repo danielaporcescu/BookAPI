@@ -8,7 +8,7 @@ namespace BookAPI.Services
 {
     public class ReviewerRepository : IReviewerRepository
     {
-        private BookDbContext _reviewerContext;
+        private readonly BookDbContext _reviewerContext;
 
         //dependency injection
         public ReviewerRepository(BookDbContext reviewerContext)
