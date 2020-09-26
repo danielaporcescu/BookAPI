@@ -27,8 +27,7 @@ namespace BookAPI.Controllers
         }
 
         //api/categories/categoryId
-        [HttpGet]
-        [Route("{categoryId}")]
+        [HttpGet("{categoryId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(CategoryDto))]
@@ -38,8 +37,7 @@ namespace BookAPI.Controllers
         }
 
         //api/categories/books/bookId
-        [HttpGet]
-        [Route("books/{bookId}")]
+        [HttpGet("books/{bookId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
@@ -49,8 +47,7 @@ namespace BookAPI.Controllers
         }
 
         //api/categories/categoryId/books
-        [HttpGet]
-        [Route("{categoryId}/books")]
+        [HttpGet("{categoryId}/books")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<BookDto>))]

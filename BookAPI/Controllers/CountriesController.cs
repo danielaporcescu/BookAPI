@@ -76,7 +76,7 @@ namespace BookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(CountryDto))]
         public IActionResult GetCountyOfAnAuthor(int authorId)
         {
-            if (_authorRepository.AuthorExists(authorId))
+            if (!_authorRepository.AuthorExists(authorId))
                 return NotFound();
 
             var country = _countryRepository.GetCountryOfAnAuthor(authorId);
