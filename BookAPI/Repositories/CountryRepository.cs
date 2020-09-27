@@ -56,5 +56,33 @@ namespace BookAPI.Services
 
             return country != null;
         }
+
+        public bool CreateCountry(Country country)
+        {
+            _countryContext.AddAsync(country);
+
+            return Save();
+        }
+
+        public bool DeleteCountry(Country country)
+        {
+            _countryContext.Remove(country);
+
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _countryContext.SaveChanges();
+
+            return saved >= 0;
+        }
+
+        public bool UpdateCountry(Country country)
+        {
+            _countryContext.Update(country);
+
+            return Save();
+        }
     }
 }
