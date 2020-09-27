@@ -19,6 +19,7 @@ namespace BookAPI.Controllers
         //api/authors
         [HttpGet]
         [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
         public IActionResult GetAuthors()
         {
@@ -28,6 +29,7 @@ namespace BookAPI.Controllers
         //api/authors/authorId
         [HttpGet("{authorId}")]
         [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(AuthorDto))]
         public IActionResult GetAuthor(int authorId)
         {
@@ -37,6 +39,7 @@ namespace BookAPI.Controllers
         //api/authors/books/bookId
         [HttpGet("books/{bookId}")]
         [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
         public IActionResult GetAuthorsOfABook(int bookId)
         {
@@ -46,6 +49,7 @@ namespace BookAPI.Controllers
         //api/authors/authorId/books
         [HttpGet("{authorId}/books")]
         [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<BookDto>))]
         public IActionResult GetBooksByAuthor(int authorId)
         {

@@ -9,6 +9,8 @@ namespace BookAPI.Services
 
         IActionResult GetBookById(int bookId, ModelStateDictionary state);
 
-        IActionResult GetBookByISBN(int bookIsbn, ModelStateDictionary state);
+        IActionResult GetBookByISBN(string bookIsbn, ModelStateDictionary state);
+
+        IActionResult GetBookRating(int bookId, ModelStateDictionary state);
     }
 }
