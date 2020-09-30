@@ -6311,23 +6311,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dell\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\danie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\1. Documente\\Projects\\BookAPI\\BookAPI\\BookAPI.csproj",
+      "projectUniqueName": "C:\\A-Folder\\Documents\\Projects\\BookAPI\\BookAPI\\BookAPI.csproj",
       "projectName": "BookAPI",
-      "projectPath": "C:\\1. Documente\\Projects\\BookAPI\\BookAPI\\BookAPI.csproj",
-      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\1. Documente\\Projects\\BookAPI\\BookAPI\\obj\\",
+      "projectPath": "C:\\A-Folder\\Documents\\Projects\\BookAPI\\BookAPI\\BookAPI.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\A-Folder\\Documents\\Projects\\BookAPI\\BookAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
