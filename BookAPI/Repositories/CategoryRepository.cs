@@ -58,5 +58,33 @@ namespace BookAPI.Services
 
             return category != null;
         }
+
+        public bool CreateCategory(Category category)
+        {
+            _categoryContext.AddAsync(category);
+
+            return Save();
+        }
+
+        public bool UpdateCategory(Category category)
+        {
+            _categoryContext.Update(category);
+
+            return Save();
+        }
+
+        public bool DeleteCategory(Category category)
+        {
+            _categoryContext.Remove(category);
+
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _categoryContext.SaveChanges();
+
+            return saved >= 0;
+        }
     }
 }
