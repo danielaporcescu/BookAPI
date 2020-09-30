@@ -1,7 +1,9 @@
 ﻿using BookAPI.DTOs;
+using BookAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookAPI.Services
 {
@@ -101,6 +103,42 @@ namespace BookAPI.Services
                 });
             }
             return new OkObjectResult(booksDto);
+        }
+
+        public IActionResult CreateCategory(Category categoryToCreate, ModelStateDictionary state)
+        {
+            if (categoryToCreate == null)
+                return new BadRequestResult();
+
+            var category = _categoryRepository.GetCategories()
+                           .Where(c => c.Name.Trim().ToUpper() == categoryToCreate.Name.Trim().ToUpper())
+                           .FirstOrDefault();
+            if (category != null)
+            {
+                state.AddModelError("", $"Country {categoryToCreate.Name} already exists!");
+                return new ObjectResult(state) { StatusCode = 422 };
+            }
+
+            if (!state.IsValid)
+                return new BadRequestObjectResult(state);
+
+            if (!_categoryRepository.CreateCategory(categoryToCreate))
+            {
+                state.AddModelError("", $"Something went wrong saving {categoryToCreate.Name}");
+                return new ObjectResult(state) { StatusCode = 422 };
+            }
+
+            return new CreatedAtRouteResult("GetCounty", new { categoryId = categoryToCreate.Id }, categoryToCreate);
+        }
+
+        public IActionResult UpdateCategory(int categoryId, Category updatedCategoryInfo, ModelStateDictionary state)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IActionResult DeleteCategory(int categoryId, ModelStateDictionary state)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
