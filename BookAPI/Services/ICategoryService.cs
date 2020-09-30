@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BookAPI.Services
@@ -12,5 +13,12 @@ namespace BookAPI.Services
         IActionResult GetAllCategoriesOfABook(int bookId, ModelStateDictionary state);
 
         IActionResult GetBooksForCategory(int categoryId, ModelStateDictionary state);
+
+        IActionResult  CreateCategory(Category categoryToCreate, ModelStateDictionary state);
+
+        IActionResult UpdateCategory(int categoryId, Category updatedCategoryInfo, ModelStateDictionary state);
+
+        IActionResult DeleteCategory(int categoryId, ModelStateDictionary state);
+
     }
 }
