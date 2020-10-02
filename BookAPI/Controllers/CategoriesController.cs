@@ -28,7 +28,7 @@ namespace BookAPI.Controllers
         }
 
         //api/categories/categoryId
-        [HttpGet("{categoryId}")]
+        [HttpGet("{categoryId}", Name = "GetCategory")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(CategoryDto))]
@@ -63,25 +63,25 @@ namespace BookAPI.Controllers
         [ProducesResponseType(422)]
         [ProducesResponseType(500)]
         [ProducesResponseType(201, Type = typeof(Category))]
-        public IActionResult CreateCategory(Category categoryToCreate)
+        public IActionResult CreateCategory([FromBody] Category categoryToCreate)
         {
             return _categoryService.CreateCategory(categoryToCreate, ModelState);
         }
 
 
-        //api/countries/categoryId
+        //api/categories/categoryId
         [HttpPut("{categoryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(422)]
         [ProducesResponseType(500)]
-        public IActionResult UpdateCategory(int categoryId, Category updatedCategoryInfo)
+        public IActionResult UpdateCategory(int categoryId, [FromBody] Category updatedCategoryInfo)
         {
             return _categoryService.UpdateCategory(categoryId, updatedCategoryInfo, ModelState);
         }
 
-        //api/countries/categoryId
+        //api/categories/categoryId
         [HttpDelete("{categoryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

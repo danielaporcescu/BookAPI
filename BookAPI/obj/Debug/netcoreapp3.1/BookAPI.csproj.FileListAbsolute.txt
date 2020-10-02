@@ -119,3 +119,4 @@ C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\staticweb
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.dll
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.pdb
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.genruntimeconfig.cache
+C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csprojAssemblyReference.cache

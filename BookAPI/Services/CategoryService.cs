@@ -128,7 +128,7 @@ namespace BookAPI.Services
                 return new ObjectResult(state) { StatusCode = 422 };
             }
 
-            return new CreatedAtRouteResult("GetCounty", new { categoryId = categoryToCreate.Id }, categoryToCreate);
+            return new CreatedAtRouteResult("GetCategory", new { categoryId = categoryToCreate.Id }, categoryToCreate);
         }
 
         public IActionResult UpdateCategory(int categoryId, Category updatedCategoryInfo, ModelStateDictionary state)
