@@ -166,6 +166,46 @@ namespace BookAPI.Controllers
         }
 
         //api/reviews/reviewId
+        [HttpPut("{reviewId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(204)]
+        public IActionResult UpdateReview(int reviewId, [FromBody] Review reviewToUpdate)
+        {
+            if (reviewToUpdate == null)
+                return BadRequest(ModelState);
+
+            if (reviewId != reviewToUpdate.Id)
+                return BadRequest(ModelState);
+
+            if(!_reviewRepository.ReviewExists(reviewId))
+                ModelState.AddModelError("", "Review does not exist!");
+
+            if (!_reviewerRepository.ReviewerExists(reviewToUpdate.Reviewer.Id))
+                ModelState.AddModelError("", "Reviewer does not exist!");
+
+            if (!_bookRepository.BookExistsById(reviewToUpdate.Book.Id))
+                ModelState.AddModelError("", "Book does not exist!");
+
+            if (!ModelState.IsValid)
+                return StatusCode(404, ModelState);
+
+            reviewToUpdate.Book = _bookRepository.GetBookById(reviewToUpdate.Book.Id);
+            reviewToUpdate.Reviewer = _reviewerRepository.GetReviewer(reviewToUpdate.Reviewer.Id);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_reviewRepository.UpdateReview(reviewToUpdate))
+            {
+                ModelState.AddModelError("", $"Something went wrong updating review");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
 
         //api/reviews/reviewId
     }
