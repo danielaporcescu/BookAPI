@@ -110,8 +110,6 @@ C:\A-Folder\Documents\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\runtimes\
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.AssemblyInfoInputs.cache
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.AssemblyInfo.cs
-C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csproj.CoreCompileInputs.cache
-C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.RazorTargetAssemblyInfo.cache
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csproj.CopyComplete
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\staticwebassets\BookAPI.StaticWebAssets.Manifest.cache
@@ -120,3 +118,8 @@ C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.d
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.pdb
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.genruntimeconfig.cache
 C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csprojAssemblyReference.cache
+C:\A-Folder\Documents\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\A-Folder\Documents\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\A-Folder\Documents\Projects\BookAPI\BookAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.csproj.CoreCompileInputs.cache
+C:\A-Folder\Documents\Projects\BookAPI\BookAPI\obj\Debug\netcoreapp3.1\BookAPI.MvcApplicationPartsAssemblyInfo.cache
