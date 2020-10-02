@@ -1,7 +1,9 @@
 ﻿using BookAPI.DTOs;
+using BookAPI.Models;
 using BookAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookAPI.Controllers
 {
@@ -10,12 +12,14 @@ namespace BookAPI.Controllers
     public class ReviewsController : Controller
     {
         private readonly IReviewRepository _reviewRepository;
+        private readonly IReviewerRepository _reviewerRepository;
         private readonly IBookRepository _bookRepository;
 
-        public ReviewsController(IReviewRepository reviewRepository, IBookRepository bookRepository)
+        public ReviewsController(IReviewRepository reviewRepository, IBookRepository bookRepository, IReviewerRepository reviewerRepository)
         {
             _reviewRepository = reviewRepository;
             _bookRepository = bookRepository;
+            _reviewerRepository = reviewerRepository;
         }
 
         //api/reviews
@@ -45,7 +49,7 @@ namespace BookAPI.Controllers
         }
 
         //api/reviews/reviewId
-        [HttpGet("{reviewId}")]
+        [HttpGet("{reviewId}", Name = "GetReview")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(ReviewDto))]
@@ -125,5 +129,44 @@ namespace BookAPI.Controllers
 
             return Ok(bookDto);
         }
+
+        //api/reviews
+        [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(201, Type = typeof(Review))]
+        public IActionResult CreateReview([FromBody] Review reviewToCreate)
+        {
+            if (reviewToCreate == null)
+                return BadRequest(ModelState);
+
+            if (!_reviewerRepository.ReviewerExists(reviewToCreate.Reviewer.Id))
+                ModelState.AddModelError("", "Reviewer does not exist!");
+
+            if(!_bookRepository.BookExistsById(reviewToCreate.Book.Id))
+                ModelState.AddModelError("", "Book does not exist!");
+
+            if (!ModelState.IsValid)
+                return StatusCode(404, ModelState);
+
+            reviewToCreate.Book = _bookRepository.GetBookById(reviewToCreate.Book.Id);
+            reviewToCreate.Reviewer = _reviewerRepository.GetReviewer(reviewToCreate.Reviewer.Id);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_reviewRepository.CreateReview(reviewToCreate))
+            {
+                ModelState.AddModelError("", $"Something went wrong saving review");
+                return StatusCode(500, ModelState);
+            }
+
+            return CreatedAtRoute("GetReview", new { reviewId = reviewToCreate.Id }, reviewToCreate);
+        }
+
+        //api/reviews/reviewId
+
+        //api/reviews/reviewId
     }
 }
