@@ -171,7 +171,7 @@ namespace BookAPI.Services
             if (_categoryRepository.GetBooksForCategory(categoryId).Count() > 0)
             {
                 state.AddModelError("", $"Category {categoryToDelete.Name} " +
-                    "cannot be deleted because it is used by at least one Author");
+                    "cannot be deleted because it is used by at least one Book");
                 return new ObjectResult(state) { StatusCode = 409 };
             }
 
