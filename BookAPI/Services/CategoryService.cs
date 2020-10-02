@@ -115,7 +115,7 @@ namespace BookAPI.Services
                            .FirstOrDefault();
             if (category != null)
             {
-                state.AddModelError("", $"Country {categoryToCreate.Name} already exists!");
+                state.AddModelError("", $"Category {categoryToCreate.Name} already exists!");
                 return new ObjectResult(state) { StatusCode = 422 };
             }
 
@@ -125,7 +125,7 @@ namespace BookAPI.Services
             if (!_categoryRepository.CreateCategory(categoryToCreate))
             {
                 state.AddModelError("", $"Something went wrong saving {categoryToCreate.Name}");
-                return new ObjectResult(state) { StatusCode = 422 };
+                return new ObjectResult(state) { StatusCode = 500 };
             }
 
             return new CreatedAtRouteResult("GetCategory", new { categoryId = categoryToCreate.Id }, categoryToCreate);
