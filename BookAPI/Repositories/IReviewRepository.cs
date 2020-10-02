@@ -14,5 +14,13 @@ namespace BookAPI.Services
         Book GetBookOfAReview(int reviewId);
 
         bool ReviewExists(int reviewId);
+
+        bool CreateReview(Review review);
+
+        bool UpdateReview(Review review);
+
+        bool DeleteReview(Review review);
+
+        bool Save();
     }
 }
