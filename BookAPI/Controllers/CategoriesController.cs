@@ -1,4 +1,5 @@
 ﻿using BookAPI.DTOs;
+using BookAPI.Models;
 using BookAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -54,6 +55,43 @@ namespace BookAPI.Controllers
         public IActionResult GetBooksForCategory(int categoryId)
         {
             return _categoryService.GetBooksForCategory(categoryId, ModelState);
+        }
+
+        //api/categories
+        [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(422)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(201, Type = typeof(Category))]
+        public IActionResult CreateCategory(Category categoryToCreate)
+        {
+            return _categoryService.CreateCategory(categoryToCreate, ModelState);
+        }
+
+
+        //api/countries/categoryId
+        [HttpPut("{categoryId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(422)]
+        [ProducesResponseType(500)]
+        public IActionResult UpdateCategory(int categoryId, Category updatedCategoryInfo)
+        {
+            return _categoryService.UpdateCategory(categoryId, updatedCategoryInfo, ModelState);
+        }
+
+        //api/countries/categoryId
+        [HttpDelete("{categoryId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(409)]
+        [ProducesResponseType(422)]
+        [ProducesResponseType(500)]
+        public IActionResult DeleteCategory(int categoryId)
+        {
+            return _categoryService.DeleteCategory(categoryId, ModelState);
         }
     }
 }
